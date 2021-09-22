@@ -8,12 +8,13 @@ import javax.swing.BorderFactory;
 import java.awt.BorderLayout;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
+import javax.swing.JLabel;
 import java.awt.Graphics;
 import javax.imageio.ImageIO;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-
+import javax.swing.ImageIcon;
 
 public class Main {
 
@@ -48,30 +49,35 @@ public class Main {
         JPanel menu1 = new JPanel();
         menu1.setPreferredSize(new Dimension(MENU_WIDTH, MENU_HEIGHT));
         menu1.setBorder(BorderFactory.createEtchedBorder());
-
+        
         frame.add(menu1, BorderLayout.EAST);
 
         menuBar = new JMenuBar();
-        {
-            JMenu menuFichier = new JMenu("Fichier");
-            {
-                // menuFichier.add(fermer);
-            }
-            menuBar.add(menuFichier);
-            JMenu menuEdition = new JMenu("A propos");
-            {
-                // menuEdition.add(aide);
-            }
-            menuBar.add(menuEdition);
-        }
+        JMenu menuFichier = new JMenu("Fichier");
+        // menuFichier.add(fermer);
+        menuBar.add(menuFichier);
+
+        JMenu menuEdition = new JMenu("A propos");
+        // menuEdition.add(aide);
+        menuBar.add(menuEdition);
+        
+        
         frame.setJMenuBar(menuBar);
 
         try {
-            imgFond = ImageIO.read(new File("images/fond.jpg"));
+            imgFond = ImageIO.read(new File("TP1/images/Fond.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
         
+        JPanel panelImage = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(imgFond, 0, 0, this); // see javadoc for more info on the parameters            
+            }
+        };
+        frame.add(panelImage);
     }
 
     // POINT D'ENTREE
