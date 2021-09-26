@@ -8,13 +8,11 @@ import javax.swing.BorderFactory;
 import java.awt.BorderLayout;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
-import javax.swing.JLabel;
 import java.awt.Graphics;
 import javax.imageio.ImageIO;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import javax.swing.ImageIcon;
 
 public class Main {
 
@@ -65,7 +63,7 @@ public class Main {
         frame.setJMenuBar(menuBar);
 
         try {
-            imgFond = ImageIO.read(new File("TP1/images/Fond.png"));
+            imgFond = ImageIO.read(new File("images/Fond.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -74,7 +72,9 @@ public class Main {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(imgFond, 0, 0, this); // see javadoc for more info on the parameters            
+                int x = (this.getWidth() - imgFond.getWidth(null))/2;
+                int y = (this.getHeight() - imgFond.getHeight(null))/2;
+                g.drawImage(imgFond, x, y, this);           
             }
         };
         frame.add(panelImage);
