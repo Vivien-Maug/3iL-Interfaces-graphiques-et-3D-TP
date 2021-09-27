@@ -58,24 +58,23 @@ public class Main {
 
         imagesList = new ArrayList<BackgroundImage>();
         imagesList.add(new BackgroundImage("images/Fond.png", "Fond.png"));
+        imagesList.get(0).setPos(0, 0);
 
         JPanel panelImage = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 for (BackgroundImage bgImage : imagesList) {
-                    Image img = bgImage.getImage();
-                    int x = (this.getWidth() - img.getWidth(null)) / 2;
-                    int y = (this.getHeight() - img.getHeight(null)) / 2;
-                    bgImage.setPos(x, y);
-                    g.drawImage(img, x, y, this);
+                    g.drawImage(bgImage.getImage(), bgImage.getPos().x, bgImage.getPos().y, this);
                 }
             }
         };
         frame.add(panelImage);
 
-        mouseListener = new AppMouseListener(imagesList);
-        panelImage.addMouseListener(mouseListener);
+        mouseListener = new AppMouseListener(imagesList, panelImage);
+        frame.addMouseListener(mouseListener);
+        frame.addMouseMotionListener(mouseListener);
+
     }
 
     private void createHorizontalMenu() {

@@ -33,6 +33,10 @@ public class BackgroundImage {
         return true;
     }
 
+    public Point getPos() {
+        return new Point(posX, posY);
+    }
+
     public boolean isClicked(Point pos) {
         int width = img.getWidth(null);
         int height = img.getHeight(null);
