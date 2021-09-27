@@ -21,17 +21,17 @@ import javax.swing.SwingUtilities;
 
 import projet.Class.BackgroundImage;
 import projet.Class.ImageFilter;
+import projet.Class.AppMouseListener;
 
 public class Main {
 
-    // CONSTANTES
     public static final int FRAME_WIDTH = 1168;
     public static final int FRAME_HEIGHT = 800;
     public static final int MENU_HEIGHT = 500;
     public static final int MENU_WIDTH = 200;
 
-    // ATTRIBUTS
     private JFrame frame;
+    private AppMouseListener mouseListener;
     private JMenuBar menuBar;
     private ArrayList<BackgroundImage> imagesList;
 
@@ -39,11 +39,9 @@ public class Main {
     private JButton addImageBtn, removeImageBtn;
 
     public Main() {
-        // CONSTRUCTEUR
         createView();
     }
 
-    // COMMANDES
     public void display() {
         frame.pack();
         frame.setLocationRelativeTo(null);
@@ -69,11 +67,15 @@ public class Main {
                     Image img = bgImage.getImage();
                     int x = (this.getWidth() - img.getWidth(null)) / 2;
                     int y = (this.getHeight() - img.getHeight(null)) / 2;
+                    bgImage.setPos(x, y);
                     g.drawImage(img, x, y, this);
                 }
             }
         };
         frame.add(panelImage);
+
+        mouseListener = new AppMouseListener(imagesList);
+        panelImage.addMouseListener(mouseListener);
     }
 
     private void createHorizontalMenu() {
