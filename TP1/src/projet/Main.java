@@ -56,7 +56,7 @@ public class Main {
         this.createVerticalMenu();
 
         imagesList = new ArrayList<BackgroundImage>();
-        imagesList.add(new BackgroundImage("images/Fond.png", "Fond.png"));
+        imagesList.add(new BackgroundImage("images/Background.png", "Background.png"));
         imagesList.get(0).setPos(0, 0);
 
         JPanel panelImage = new JPanel() {
