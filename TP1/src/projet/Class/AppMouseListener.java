@@ -53,8 +53,6 @@ public class AppMouseListener implements MouseInputListener {
         for (BackgroundImage img : imgList) {
             if (img.isClicked(e.getPoint())) {
                 Point delta = new Point(e.getX() - previousClickPoint.x, e.getY() - previousClickPoint.y);
-                // Point delta = new Point(previousClickPoint.x - e.getX(), previousClickPoint.y - e.getY());
-                System.out.println(delta.getX() + " - " + delta.getY());
 
                 img.setPos(img.getPos().x + delta.x, img.getPos().y + delta.y);
                 needRepaint = true;
