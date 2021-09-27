@@ -1,7 +1,6 @@
 package projet.Class;
 
 import java.awt.event.MouseEvent;
-import java.io.PipedOutputStream;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import java.awt.Point;
@@ -21,37 +20,31 @@ public class AppMouseListener implements MouseInputListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        // TODO Auto-generated method stub
         previousClickPoint = new Point(e.getX(), e.getY());
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
         previousClickPoint = null;
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        // TODO Auto-generated method stub
         if (previousClickPoint == null) {
             previousClickPoint = new Point(e.getX(), e.getY());
             return;
@@ -75,7 +68,6 @@ public class AppMouseListener implements MouseInputListener {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        // TODO Auto-generated method stub
 
     }
 }
