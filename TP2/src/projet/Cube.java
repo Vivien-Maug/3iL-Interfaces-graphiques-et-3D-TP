@@ -8,10 +8,10 @@ import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.fixedfunc.GLLightingFunc;
 import com.jogamp.opengl.fixedfunc.GLMatrixFunc;
 
-public class Triangle implements GLEventListener {
+public class Cube implements GLEventListener {
     private float rotate;
 
-    public Triangle() {
+    public Cube() {
         rotate = 0.0f;
     }
 
@@ -62,14 +62,53 @@ public class Triangle implements GLEventListener {
         gl.glRotatef(rotate, 0.0f, 1.0f, 0.0f);
         gl.glRotatef(rotate, 0.0f, 0.0f, 1.0f);
 
-        // Draw a triangle :
-        gl.glBegin(GL2.GL_TRIANGLES);
-        gl.glColor3f(1.0f, 0.0f, 0.0f); // Set the color for the next drawing
-        gl.glVertex3f(-1.0f, 1.0f, 0.0f); // Set a point at top left
+        // Draw a cube :
+        gl.glBegin(GL2.GL_QUADS);
+        gl.glColor3f(0.0f, 1.0f, 1.0f); // Set the color for the next drawing
+        gl.glVertex3f(-1.0f, 1.0f, 1.0f);
+        gl.glVertex3f(1.0f, 1.0f, 1.0f);
+        gl.glVertex3f(1.0f, -1.0f, 1.0f);
+        gl.glVertex3f(-1.0f, -1.0f, 1.0f);
+        gl.glEnd();
+
+        gl.glBegin(GL2.GL_QUADS);
         gl.glColor3f(0.0f, 1.0f, 0.0f); // Set the color for the next drawing
-        gl.glVertex3f(1.0f, 1.0f, 0.0f); // Set a point at top right
+        gl.glVertex3f(-1.0f, 1.0f, 1.0f);
+        gl.glVertex3f(-1.0f, 1.0f, -1.0f);
+        gl.glVertex3f(-1.0f, -1.0f, -1.0f);
+        gl.glVertex3f(-1.0f, -1.0f, 1.0f);
+        gl.glEnd();
+
+        gl.glBegin(GL2.GL_QUADS);
         gl.glColor3f(0.0f, 0.0f, 1.0f); // Set the color for the next drawing
-        gl.glVertex3f(1.0f, -1.0f, 0.0f); // Set a point at bottom right
+        gl.glVertex3f(-1.0f, 1.0f, 1.0f);
+        gl.glVertex3f(-1.0f, 1.0f, -1.0f);
+        gl.glVertex3f(1.0f, 1.0f, -1.0f);
+        gl.glVertex3f(1.0f, 1.0f, 1.0f);
+        gl.glEnd();
+
+        gl.glBegin(GL2.GL_QUADS);
+        gl.glColor3f(1.0f, 0.0f, 0.0f); // Set the color for the next drawing
+        gl.glVertex3f(1.0f, 1.0f, 1.0f);
+        gl.glVertex3f(1.0f, 1.0f, -1.0f);
+        gl.glVertex3f(1.0f, -1.0f, -1.0f);
+        gl.glVertex3f(1.0f, -1.0f, 1.0f);
+        gl.glEnd();
+
+        gl.glBegin(GL2.GL_QUADS);
+        gl.glColor3f(1.0f, 1.0f, 0.0f); // Set the color for the next drawing
+        gl.glVertex3f(-1.0f, -1.0f, 1.0f);
+        gl.glVertex3f(-1.0f, -1.0f, -1.0f);
+        gl.glVertex3f(1.0f, -1.0f, -1.0f);
+        gl.glVertex3f(1.0f, -1.0f, 1.0f);
+        gl.glEnd();
+
+        gl.glBegin(GL2.GL_QUADS);
+        gl.glColor3f(1.0f, 0.0f, -1.0f); // Set the color for the next drawing
+        gl.glVertex3f(-1.0f, 1.0f, -1.0f);
+        gl.glVertex3f(1.0f, 1.0f, -1.0f);
+        gl.glVertex3f(1.0f, -1.0f, -1.0f);
+        gl.glVertex3f(-1.0f, -1.0f, -1.0f);
         gl.glEnd();
 
         // Increase rotation :

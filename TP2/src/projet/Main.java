@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import com.jogamp.graph.geom.Triangle;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.util.Animator;
 
@@ -54,7 +53,7 @@ public class Main {
         // Set the OpenGL zone :
         GLCanvas canvas = new GLCanvas();
         
-        canvas.addGLEventListener(new projet.Triangle());
+        canvas.addGLEventListener(new Cube());
         canvas.requestFocus();
         frame.add(canvas, BorderLayout.CENTER);
 
