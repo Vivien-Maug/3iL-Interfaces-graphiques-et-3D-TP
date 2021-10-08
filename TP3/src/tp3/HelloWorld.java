@@ -17,6 +17,7 @@ public class HelloWorld {
 
     // The window handle
     private long window;
+    private final int wHeight = 800, wWidth = 800;
 
     private float rotate;
 
@@ -50,7 +51,7 @@ public class HelloWorld {
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE); // the window will be resizable
 
         // Create the window
-        window = glfwCreateWindow(300, 300, "Hello World!", NULL, NULL);
+        window = glfwCreateWindow(wWidth, wHeight, "Hello World!", NULL, NULL);
         if (window == NULL)
             throw new RuntimeException("Failed to create the GLFW window");
 
@@ -108,7 +109,7 @@ public class HelloWorld {
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         double fh = 0.5f;
-        double aspect = 300f / 300f;
+        double aspect = (float)wWidth / (float)wHeight;
         double fw = fh * aspect;
         glFrustum(-fw, fw, -fh, fh, 1.0, 1000.0);
         glMatrixMode(GL_MODELVIEW);
