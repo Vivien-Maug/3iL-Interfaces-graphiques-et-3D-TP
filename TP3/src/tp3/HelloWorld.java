@@ -95,6 +95,13 @@ public class HelloWorld {
         // bindings available for use.
         GL.createCapabilities();
 
+        glShadeModel(GL_SMOOTH);
+
+        glClearDepth(1.0f);
+        glEnable(GL_DEPTH_TEST);
+        glDepthFunc(GL_LEQUAL);
+        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+
         // Set the clear color
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
@@ -107,6 +114,7 @@ public class HelloWorld {
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
 
+        
         // Run the rendering loop until the user has attempted to close
         // the window or has pressed the ESCAPE key.
         while (!glfwWindowShouldClose(window)) {
