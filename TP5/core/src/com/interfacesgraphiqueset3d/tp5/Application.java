@@ -71,6 +71,12 @@ public class Application extends ApplicationAdapter {
             savePixelsInPngFile();
         }
 
+        // Same as before, but for me there is a bug and ctrl is not trigger
+        if (Gdx.input.isKeyPressed(Keys.ALT_LEFT) && Gdx.input.isKeyPressed(Keys.S)) {
+            // Save the pixels into a png file :
+            savePixelsInPngFile();
+        }
+
         // If "escape" is pressed :
         if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
             // Close th application :
@@ -130,11 +136,11 @@ public class Application extends ApplicationAdapter {
     }
 
     /**
-     * Return the color processed with path tracing and Phong method for the given pixel.
+     * Return the color processed with path tracing and Phong method for the given
+     * pixel.
      */
-    private Vector3 getColor(int xScreen, int yScreen)
-    {
-        Vector3 color = new Vector3(1.f, 0f, 0f); 
+    private Vector3 getColor(int xScreen, int yScreen) {
+        Vector3 color = new Vector3(1.f, 0f, 0f);
 
         // Get coords of current pixel, in scene space :
         tmpVector3.set(xScreen, yScreen, 0);
