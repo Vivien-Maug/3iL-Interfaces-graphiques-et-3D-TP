@@ -24,7 +24,7 @@ public class Application extends ApplicationAdapter {
     private Vector3 currentScene;
     private Vector3 tmpVector3;
 
-    @Overridelight
+    @Override
     public void create() {
         // Get screen dimensions, in pixels :
         int screenWidth = Gdx.graphics.getWidth();
