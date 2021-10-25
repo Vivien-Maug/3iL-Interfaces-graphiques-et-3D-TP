@@ -2,11 +2,8 @@ package com.interfacesgraphiqueset3d.tp5;
 
 import java.util.ArrayList;
 
-import com.Sphere;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector3;
-import com.interfacesgraphiqueset3d.Light;
-import com.interfacesgraphiqueset3d.Object3d;
 
 public class Scene {
     private ArrayList<Object3d> lstObject3d;
