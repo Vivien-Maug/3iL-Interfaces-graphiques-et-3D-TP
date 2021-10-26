@@ -23,6 +23,7 @@ public class Application extends ApplicationAdapter {
     private Vector2 currentScreen;
     private Vector3 currentScene;
     private Vector3 tmpVector3;
+    private Scene scene;
 
     @Override
     public void create() {
@@ -61,6 +62,7 @@ public class Application extends ApplicationAdapter {
         // Others initializations :
         currentScene = new Vector3();
         tmpVector3 = new Vector3();
+        scene = new Scene();
     }
 
     @Override
@@ -116,6 +118,8 @@ public class Application extends ApplicationAdapter {
         pixels.setColor(color.x, color.y, color.z, 1f);
         pixels.drawPixel((int) currentScreen.x, (int) currentScreen.y);
 
+        scene.drawImage(pixels, camera, 1);
+
         return isOk;
     }
 
@@ -147,6 +151,8 @@ public class Application extends ApplicationAdapter {
         currentScene = viewport.unproject(tmpVector3);
 
         // To be continued ...
+
+        
 
         return color;
     }
