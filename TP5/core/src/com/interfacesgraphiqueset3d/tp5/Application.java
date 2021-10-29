@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.PixmapIO;
@@ -11,6 +12,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.math.collision.Ray;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
@@ -22,8 +24,8 @@ public class Application extends ApplicationAdapter {
     private SpriteBatch spriteBatch;
     private Vector2 currentScreen;
     private Vector3 currentScene;
-    private Vector3 tmpVector3;
     private Scene scene;
+    private int antiAlia = 0;
 
     @Override
     public void create() {
@@ -61,7 +63,6 @@ public class Application extends ApplicationAdapter {
 
         // Others initializations :
         currentScene = new Vector3();
-        tmpVector3 = new Vector3();
         scene = new Scene();
     }
 
@@ -90,7 +91,7 @@ public class Application extends ApplicationAdapter {
 
         // Process pixels color :
         processPixel();
-
+        textureWithPixels.draw(pixels, 0, 0);
         // Render the texture with pixels :
         spriteBatch.begin();
         spriteBatch.draw(textureWithPixels, 0, 0);
@@ -112,13 +113,17 @@ public class Application extends ApplicationAdapter {
         boolean isOk = true;
 
         // Get color of current pixel :
-        Vector3 color = getColor((int) currentScreen.x, (int) currentScreen.y);
+        Color color = Color.BLACK;
 
-        // Save color into pixels map :
-        pixels.setColor(color.x, color.y, color.z, 1f);
-        pixels.drawPixel((int) currentScreen.x, (int) currentScreen.y);
+        for (int y = 0; y < pixels.getHeight(); y++) {
+            for (int x = 0; x < pixels.getWidth(); x++) {
+                color = getColor(x, y);
+                pixels.setColor(color);
+                pixels.drawPixel(x, y);
+            }
+        }
 
-        scene.drawImage(pixels, camera, 1);
+        // scene.drawImage(pixels, camera, 1);
 
         return isOk;
     }
@@ -143,16 +148,20 @@ public class Application extends ApplicationAdapter {
      * Return the color processed with path tracing and Phong method for the given
      * pixel.
      */
-    private Vector3 getColor(int xScreen, int yScreen) {
-        Vector3 color = new Vector3(1.f, 0f, 0f);
+    private Color getColor(int xScreen, int yScreen) {
+        Color color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
 
-        // Get coords of current pixel, in scene space :
-        tmpVector3.set(xScreen, yScreen, 0);
-        currentScene = viewport.unproject(tmpVector3);
+        Ray ray = new Ray();
+        for (int i = 0; i <= antiAlia; i++) {
 
-        // To be continued ...
+            currentScene = camera.unproject(new Vector3(xScreen, yScreen, 1));
 
-        
+            ray = new Ray(camera.position, currentScene);
+
+            // Couleur trouvée :
+            color = color.add(scene.lauchnRay(ray, 1, xScreen, yScreen));
+        }
+        // color = color.mul(1 / (antiAlia + 1.0f));
 
         return color;
     }

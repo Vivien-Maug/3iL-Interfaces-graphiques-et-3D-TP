@@ -12,6 +12,9 @@ public abstract class Object3d {
         this.name = name;
         this.position = position;
         this.color = color;
+    }
 
+    public Color getColor(){
+        return color;
     }
 }
