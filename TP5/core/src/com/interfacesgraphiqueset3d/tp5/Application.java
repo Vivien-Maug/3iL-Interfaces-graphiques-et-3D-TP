@@ -158,10 +158,10 @@ public class Application extends ApplicationAdapter {
 
             ray = new Ray(camera.position, currentScene);
 
-            // Couleur trouvée :
-            color = color.add(scene.lauchnRay(ray, 1, xScreen, yScreen));
+            // Color Found :
+            color = color.add(scene.lauchnRay(ray, 1));
         }
-        // color = color.mul(1 / (antiAlia + 1.0f));
+        color = color.mul(1 / (antiAlia + 1.0f));
 
         return color;
     }
