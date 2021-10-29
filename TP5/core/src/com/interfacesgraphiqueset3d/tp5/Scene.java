@@ -28,7 +28,7 @@ public class Scene {
         addObject3D(new Sphere("Sphere", new Vector3(-3.0f, 2.0f, 0.0f), 2.0f, Color.RED));
     }
 
-    Color lauchnRay(Ray ray, int complexite, int x, int y) {
+    Color lauchnRay(Ray ray, int complexite) {
         Color color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
         for (int i = 0; i < lstSphere.size(); i++) {
             Vector3 intersection = Vector3.Zero;
