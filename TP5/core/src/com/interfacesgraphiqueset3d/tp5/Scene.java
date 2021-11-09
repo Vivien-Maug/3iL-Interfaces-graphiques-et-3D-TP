@@ -30,12 +30,22 @@ public class Scene {
 
     Color lauchnRay(Ray ray, int complexite) {
         Color color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+        Float minDist = null;
         for (int i = 0; i < lstSphere.size(); i++) {
             Vector3 intersection = Vector3.Zero;
             boolean isIntersect = Intersector.intersectRaySphere(ray, lstSphere.get(i).getCentre(),
                     lstSphere.get(i).getRadius(), intersection);
             if (isIntersect) {
-                color.add(lstSphere.get(i).getColor());
+                if (minDist == null) {
+                    minDist = 1.0f;
+                    color = lstSphere.get(i).getColor();
+                }else{
+                    float distance = ray.origin.dst(intersection);
+                    if (minDist > distance) {
+                        minDist = distance;
+                        color = lstSphere.get(i).getColor();
+                    }
+                }
             }
         }
         return color;
